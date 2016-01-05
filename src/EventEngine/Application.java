@@ -18,12 +18,12 @@ public class Application implements IEventDriven{
 	}
 
 	@Override
-	public void emit(String eventLabel) {
+	public void emit(String eventLabel, Object...args) {
 		if(EventLoop.events.get(eventLabel) == null) {
 			throw new MissingHandlerException();
 		}
 		synchronized (EventLoop.events) {
-		  EventLoop.events.get(eventLabel).setStatus(EventStatus.ALIVE);
+		  EventLoop.events.get(eventLabel).setArgs(args).setStatus(EventStatus.ALIVE);
 		}
 	}
 	

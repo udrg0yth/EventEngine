@@ -6,11 +6,11 @@ public class Test{
 		Application app = new Application();
 		app.on("some_event", new EventHandler() {
 
-			public void handle() {
-				System.out.println("Handled:" + argm.get("var1") + " " + argm.get("var2"));
+			public void handle(Object...args) {
+				System.out.println("Handled:" + args[0] + " " + args[1]);
 			}
 			
-		}.bind("var1", 0).bind("var2", 1));
+		});
 		
 		try {
 			Thread.sleep(2000);
@@ -18,7 +18,7 @@ public class Test{
 			e.printStackTrace();
 		}
 		
-		app.emit("some_event");
+		app.emit("some_event", 0, 1);
 	}
 
 }

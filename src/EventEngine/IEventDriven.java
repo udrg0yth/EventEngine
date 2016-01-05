@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public interface IEventDriven {
      void on(String eventLabel, EventHandler eventHandler);
-     void emit(String eventLabel);
+     void emit(String eventLabel, Object...args);
      
      interface IEventLoop {
     	 static final Map<String, Event> events = new ConcurrentHashMap<>();

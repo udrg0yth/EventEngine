@@ -4,6 +4,7 @@ public class Event {
     private String eventLabel = null;
     private EventHandler eventHandler = null;
     private EventStatus eventStatus = null;
+    private Object[] args = null;
 
     public Event(String eventLabel, EventHandler eventHandler) {
     	this.eventLabel = eventLabel;
@@ -13,6 +14,11 @@ public class Event {
     
     public String getLabel() {
     	return eventLabel;
+    }
+    
+    public Event setArgs(Object...args) {
+    	this.args = args;
+    	return this;
     }
     
     public EventStatus getStatus() {
@@ -25,7 +31,10 @@ public class Event {
     }
     
     public Event handleEvent() {
-    	eventHandler.handle();
+    	if(args != null)
+    	   eventHandler.handle(args);
+    	else
+    	   eventHandler.handle();
     	return this;
     }
     
